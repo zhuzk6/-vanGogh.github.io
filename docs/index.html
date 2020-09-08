@@ -16,7 +16,7 @@
 <style type="text/css">
 <!--
 .STYLE1 {
-	color: #666666
+	color: #ff4e00
 }
 -->
 </style>
@@ -30,7 +30,7 @@
   <div id="wrap">
     <div id="text">
       <div id="code"> <font color="#FF0000"> <span class="say">亲爱的嵇玲，爱你哟！ </span><br>
-        <!--<span class="say"> </span><br>-->
+        <span class="say">2020.9.5 我们正式确定关系啦哈哈哈哈！ </span><br>
         <!--<span class="say"> 我知道我不会甜言蜜语，但是我会用行动证明一切</span><br>-->
         <!--<span class="say"> </span><br>-->
         <!--<span class="say">你说我啰嗦，有些东西因为越在乎所以越失去</span><br>-->
@@ -43,8 +43,12 @@
         </p>
       </div>
     </div>
-    <div id="clock-box"> <span class="STYLE1"></span><font color="#33CC00">亲爱的小机灵，我们认识</font> <span class="STYLE1">已经……</span>
+    <div id="clock-box"> <span class="STYLE1"></span><font color="#ff4e00">亲爱的小机灵，我们认识</font> <span class="STYLE1">已经……</span>
       <div id="clock"></div>
+
+    </div>
+    <div id="clock-box2"> <span class="STYLE1"></span><font color="#ff4e00">今天是我们交往的第</font>
+      <div id="clock2" style="margin-left: 48px;"></div>
     </div>
     <canvas id="canvas" width="1100" height="680"></canvas>
   </div>
@@ -193,6 +197,22 @@
             }
         }));
 
+        //确定关系日子
+        var confirmTime_textAnimate = eval(Jscex.compile("async", function () {
+            var confirmTime = new Date();
+            confirmTime.setFullYear(2020,8 , 5); 			//时间年月日
+            confirmTime.setHours(00);						//小时
+            confirmTime.setMinutes(00);					//分钟
+            confirmTime.setSeconds(00);					//秒前一位
+            confirmTime.setMilliseconds(00);				//秒第二位
+
+            //$("#code").show().typewriter();
+            $("#clock-box2").fadeIn(500);
+            while (true) {
+                timeElapse2(confirmTime);
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
         var runAsync = eval(Jscex.compile("async", function () {
             $await(seedAnimate());
             $await(growAnimate());
@@ -200,6 +220,8 @@
             $await(moveAnimate());
 
             textAnimate().start();
+            confirmTime_textAnimate().start();
+
 
             $await(jumpAnimate());
         }));
